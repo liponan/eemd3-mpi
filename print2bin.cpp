@@ -16,7 +16,7 @@ void print2bin(string filename, double *Y, int dim, int* lg) {
 	strcpy(filename_char, filename.c_str()); 
 	file = fopen(filename_char , "wb");
 
-	
+
 	// first byte: dimension number
 	fwrite(&dim, sizeof(int), 1, file);
 
