@@ -6,6 +6,7 @@
 // v3:   Interpolation engine changes to GNU Scientific Library
 //       2014/04/30
 // v3.1: bugs fixed 2014/05/05
+// v3.2: now export to binary file
 
 #include <iostream>
 #include <cstdlib>
@@ -16,7 +17,7 @@
 #include <mpi.h>
 /* custom subfunctions */
 #include "eemd.cpp"
-#include "printarray.cpp"
+#include "print2bin.cpp"
 
 	using namespace std;
 
@@ -503,10 +504,10 @@ int main(int argc, char *argv[])
 		//sprintf(timecode_str, "%d", timecode);
 		string filenameStr(argv[1]);
 		string filename_export // v
-		 = string(filenameStr,0,filenameStr.length()-4)+"_modes" + timecode_str + ".m";
+		 = string(filenameStr,0,filenameStr.length()-4)+"_modes" + timecode_str + ".bin";
 		string filename_log    // v
 		 = string(filenameStr,0,filenameStr.length()-4)+"_log" + timecode_str + ".txt";
-		printArray(filename_export, modes, dim2, lg2);
+		print2bin(filename_export, modes, dim2, lg2);
 		cout << filename_export << " exported!" << endl;
 		ofstream fout(filename_log.c_str());
 		fout << "Input: " << filenameStr << endl;
