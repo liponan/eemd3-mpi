@@ -1,7 +1,7 @@
-MPI (parallel) version 3-D EEMD.
+# MPI (parallel) version 3-D EEMD
 by Po-Nan Li in Institute of Physics, Academia Sinica, Taiwan
 
-# compilation example
+# Compilation example
 Require GSL (GNU Scientific Library) and MPI
 Intel compiler:
 
@@ -9,12 +9,12 @@ Intel compiler:
 mpicxx eemd3d_mpi_v3.cpp -lgsl -lgslcblas -lm -O3 -o mpi-eemd3
 ```
 
-# running example
+# Running command example
 
 ```
 mpirun -np 50 ./mpi-eemd3 R50.txt 3 100 1
 ```
-## arguments
+## Arguments
 - First argument: input file in CSV style with first number indicating the number of dimension (i.e. 3), followed by three integers indicating the size in three dimensions. Remaining values are the elements of the input data in 1-D array style.
 - Second argument: numbers of modes to decompose. (Default: 3)
 - Third argument: Number of ensembles. (Default: 1)
@@ -29,6 +29,7 @@ mpirun -np 50 ./mpi-eemd3 R50.txt 3 100 1
 - **spline_gsl.cpp**: subfunction for emd_core.cpp. Powered by GSL.
 - **print2bin.cpp**: subfunction for the main function.
 - **README.md**: this file.
+
 ## Scripts for post-EEMD data processing
 - **binsize.m**: show the size (in each dimension) of the exported data.
 - **bin2m.m**: convert the binaray data to Matlab array.
