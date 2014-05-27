@@ -259,6 +259,7 @@ int main(int argc, char *argv[])
 	delete[] rootBuff1;
 	delete[] img;
 	delete[] myModes1;
+	delete[] uCnts0, uCnts1, uDisps0, uDisps1;
 
 	t2 = MPI_Wtime();
 	dt = t2 - t1;
@@ -345,6 +346,7 @@ int main(int argc, char *argv[])
 		} // end of if (world_rank == 0)
 	} // end of for-m1
 	delete[] myBuff2, myModes2, inTmp2, outTmp2;
+	delete[] vCnts0, vCnts1, vDisps0, vDisps1;
 
 
 	if (world_rank == 0) {
@@ -434,7 +436,7 @@ int main(int argc, char *argv[])
 		} // end of for-m1
 	} // end of for-m2
 	delete[] modeBuff3in, myBuff3, myModes3, inTmp3, outTmp3;
-
+	delete[] wCnts0, wCnts1, wDisps0, wDisps1;
 
 	if (world_rank == 0) {
 		delete[] modes2, modeBuff3in, modeBuff3out;
