@@ -44,8 +44,9 @@ int main(int argc, char *argv[])
 	int i = 0, j = 0, k =0;
 	int t = 0, m1 = 0, m2 = 0, m3 = 0, r = 0;
 
-	ifstream fin;
-	string tmpStr;
+
+	int bin_flag1 = 1;
+	int bin_flag2 = 1;
 
 	if (world_rank == 0) {
 		
