@@ -96,21 +96,7 @@ int main(int argc, char *argv[])
 	// load the image into memory
 	if (world_rank == 0) {
 		img = new double[SZ];
-		t = 0;
-		while (t++ < SZ) {
-			getline(fin, tmpStr, ',');
-			tmpNum = atof(tmpStr.c_str()); // string to floating
-			img[i + j*U + k*U*V] = tmpNum; // normal copy
-			j++;
-			if (j == V) {
-				i++;
-				j = 0;
-			}
-			if (i == U) {
-				k++;
-				i = 0;
-			}
-		}
+		bin_flag2 = readBinaryImage(img, argv[1]);
 	} // end of if (world_rank == 0)
 
 	//MPI_Bcast(img, SZ, MPI_DOUBLE, 0, MPI_COMM_WORLD); // broadcast the IMG data to all nodes
