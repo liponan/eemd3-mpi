@@ -55,24 +55,18 @@ int main(int argc, char *argv[])
 			return 0;
 		} else {
 			cout << "Loading " << argv[1] << endl;
-			fin.open(argv[1]);
-			if (fin)
+			bin_flag1 = readBinaryHeader(&dim, lg, argv[1]);
+			if (bin_flag1 == 0)
 				flag = false;
 			else {
 				cout << "Can't open " << argv[1] << ". Please try again... " << endl;
-				return 0;
+				return 1;
 			}
 		}
 			
 		// read the header
-		getline(fin, tmpStr, ',');
-		dim = atoi(tmpStr.c_str());
-		for (d = 0; d < dim; d++) {
-			getline(fin, tmpStr, ',');
-			lg[d] = atoi(tmpStr.c_str());
-		} // end of for-d
-		V = lg[1];
-		U = lg[0];
+		U = lg[1];
+		V = lg[0];
 		W = lg[2];
 		SZ = U * V * W;
 	} // end of if (world_rank == 0)
