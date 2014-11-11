@@ -17,7 +17,7 @@
 #include <mpi.h>
 /* custom subfunctions */
 #include "eemd.cpp"
-#include "print2bin.cpp"
+#include "binaryIO.cpp"
 
 	using namespace std;
 
