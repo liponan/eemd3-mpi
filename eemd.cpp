@@ -8,8 +8,6 @@
 #include <iostream>
 
 void randn(double *W, int sz) {
-	srand((int)time(NULL));
-	//srand(0);
 	double u = 0;
 	double v = 0;
 	for (int i = 0; i < sz; i++) {
@@ -37,6 +35,7 @@ double Std(double *Y, int sz) {
 void eemd(double *modes,
 		double *Y, int sz, int goal, int ens, double nstd) {
 
+	srand((int)time(NULL));
 	int m, i, c, k, t;	
 	int goal1 = goal + 1;
 
