@@ -16,12 +16,9 @@ void spline(double *YY,
   	gsl_spline *spline = gsl_spline_alloc (gsl_interp_cspline, m1);
 
 	/* Core function */
-
-
   	double *xd = new double[m1];
   	for (int j = 0; j < m1; j++)
   		xd[j] = (int)X[j];
-
 
   	gsl_spline_init (spline, xd, Y, m1);
 
