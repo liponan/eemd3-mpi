@@ -28,27 +28,20 @@ void spline(double *YY,
 	double m;
 	
 	if (m1 > 2 ) {
-
-
 		for (int j = 0; j < m2; j++) {
 			YY[j] = gsl_spline_eval (spline, j, acc);
 		} // end of for-j
-
 	} // end of if
 
 	else {
-
 		m = (Y[1] - Y[0]) / (m2 - 1);
-
 		for (int j = 0; j < m2; j++) {
 			YY[j] = Y[0] + m * j;		
-		} // end of for-j
-		
+		} // end of for-j	
 	} //end of else
 
 	delete[] xd;
 	gsl_interp_accel_free (acc);
-	delete t;
 	gsl_spline_free (spline);
   	
 
