@@ -74,8 +74,8 @@ void eemd(double *modes,
 		else
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t];
-       
 	} // end of for-k
+	
 	if (nstd > 0)
 		for (t = 0; t < sz*goal1; t++)
 			modes[t] = tmp[t]*sigma / (ens * 2);

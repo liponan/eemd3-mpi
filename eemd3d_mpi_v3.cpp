@@ -275,10 +275,8 @@ int main(int argc, char *argv[])
 		modeBuff2out = new double[SZ * goalt];
 		modes2 = new double[SZ*goalt*goalt];
 	}
-
 	// parallel in each mode
 	for (m1 = 0; m1 < goalt; m1++) {
-		
 		t3 = MPI_Wtime();
 		if (world_rank == 0) {
 			for (i = 0; i < U; i++)
@@ -295,7 +293,6 @@ int main(int argc, char *argv[])
 		for (t = 0; t < myTodo; t++) {
 			for (j = 0; j < V; j++) 
 				inTmp2[j] = myBuff2[j + t*V];
-		
 			eemd(outTmp2, inTmp2, V, goal, ens, nstd);
 			for (j = 0; j < V; j++) {
 				for (m2 = 0; m2 < goalt; m2++) {
