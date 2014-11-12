@@ -12,8 +12,8 @@ void spline(double *YY,
 
 
 	gsl_interp_accel *acc = gsl_interp_accel_alloc ();
-  	const gsl_interp_type *t = gsl_interp_cspline; 
-  	gsl_spline *spline = gsl_spline_alloc (t, m1);
+  	//const gsl_interp_type *t = gsl_interp_cspline; 
+  	gsl_spline *spline = gsl_spline_alloc (gsl_interp_cspline, m1);
 
 	/* Core function */
 
@@ -43,6 +43,5 @@ void spline(double *YY,
 	delete[] xd;
 	gsl_interp_accel_free (acc);
 	gsl_spline_free (spline);
-  	
 
 }
