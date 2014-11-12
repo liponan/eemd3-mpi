@@ -13,8 +13,8 @@ void randn(double *W, int sz) {
 	double u = 0;
 	double v = 0;
 	for (int i = 0; i < sz; i++) {
-		u = (rand() *1.0) / RAND_MAX;
-		v = (rand() *1.0) / RAND_MAX; 
+		u = (rand() *1.0) / RAND_sz;
+		v = (rand() *1.0) / RAND_sz; 
 		W[i] = sqrt( -2 * log(u) ) * cos(2*3.1415926*v);
 	}
 }
@@ -39,17 +39,16 @@ void eemd(double *modes,
 
 	int m, i, c, k, t;	
 	int goal1 = goal + 1;
-	int MAX = sz;
 
 	/* Core function */
-	double *m1 = new double[goal1*MAX];
-	double *m2 = new double[goal1*MAX];
-	double *tmp = new double[goal1*MAX];
-	double *wn = new double[MAX];
-	double *Y1 = new double[MAX];
-	double *Y2 = new double[MAX];
+	double *m1 = new double[goal1*sz];
+	double *m2 = new double[goal1*sz];
+	double *tmp = new double[goal1*sz];
+	double *wn = new double[sz];
+	double *Y1 = new double[sz];
+	double *Y2 = new double[sz];
 	double sigma = Std(Y, sz);
-    //printf("Initializing... \n");
+    
     for (t = 0; t < sz*goal1; t++)
         tmp[t] = 0;
 	for (k = 0; k < ens; k++) {
