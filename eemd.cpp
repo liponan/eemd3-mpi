@@ -13,10 +13,10 @@ void randn(double *W, int sz) {
 	double u = 0;
 	double v = 0;
 	for (int i = 0; i < sz; i++) {
-		u = (rand() *1.0) / RAND_sz;
-		v = (rand() *1.0) / RAND_sz; 
+		u = (rand() *1.0) / RAND_MAX;
+		v = (rand() *1.0) / RAND_MAX; 
 		W[i] = sqrt( -2 * log(u) ) * cos(2*3.1415926*v);
-	}
+	} // end of for-i
 }
 
 double Std(double *Y, int sz) {
@@ -29,7 +29,7 @@ double Std(double *Y, int sz) {
 		sigma = sigma + pow( (Y[i] - mean) , 2);
 	if (sigma > 0)
 		sigma = sqrt( sigma / sz );
-	else {
+	else
 		sigma = 0;
 	return sigma;
 } // end of Std()
@@ -58,16 +58,18 @@ void eemd(double *modes,
 				Y1[i] = Y[i]/sigma + wn[i]*nstd;
 			else
 				Y1[i] = 0 + wn[i]*nstd;
-			if (nstd > 0)
+			if (nstd > 0) {
 				if (sigma > 0)
 					Y2[i] = Y[i]/sigma - wn[i]*nstd;
 				else
 					Y2[i] = 0 - wn[i]*nstd;
-		}
+			} // end of if 
+		} // end of for-i
 
-		emd_core(m1, Y1, sz, goal);
+		//emd_core(m1, Y1, sz, goal);
 		if (nstd > 0)
-			emd_core(m2, Y2, sz, goal);
+			nstd = nstd + 1;
+			//emd_core(m2, Y2, sz, goal);
 		if (nstd > 0)
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t] + m2[t];
@@ -75,7 +77,7 @@ void eemd(double *modes,
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t];
 	} // end of for-k
-	
+
 	if (nstd > 0)
 		for (t = 0; t < sz*goal1; t++)
 			modes[t] = tmp[t]*sigma / (ens * 2);
