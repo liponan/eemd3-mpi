@@ -68,13 +68,13 @@ void eemd(double *modes,
 		emd_core(m1, Y1, sz, goal);
 		if (nstd > 0)
 			emd_core(m2, Y2, sz, goal);
-
-		for (t = 0; t < sz*goal1; t++) {
-            //printf("%f <= %f \n", tmp[t], m1[t] + m2[t]);
-			tmp[t] = tmp[t] + m1[t];
-			if (nstd > 0)
-				tmp[t] = tmp[t] + m2[t];
-        } // END of for-t
+		if (nstd > 0)
+			for (t = 0; t < sz*goal1; t++)
+				tmp[t] = tmp[t] + m1[t] + m2[t];
+		else
+			for (t = 0; t < sz*goal1; t++)
+				tmp[t] = tmp[t] + m1[t];
+       
 	} // end of for-k
 	if (nstd > 0)
 		for (t = 0; t < sz*goal1; t++)
