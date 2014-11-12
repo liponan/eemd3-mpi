@@ -53,14 +53,22 @@ void emd_core(double *modes,
 	// for each mode
 	for (m = 0; m < goal; m++) {
 			// h = r
-			for (i = 0; i < sz; i++)
+			//fout << " @ mode " << m+1 <<"  h = [";
+			for (i = 0; i < sz; i++) {
 				h[i] = r[i];
-
+				//fout << h[i] << " ";
+			}
+			//fout << "];" << endl;
 			// solving mode
 			for (c = 0; c < itr; c++) {
+				//fout << "@itr #" << c+1 << endl;
+				//cout << "finding extrema..." << endl;
 				find_extrema(pmax, vmax, pmin, vmin, &lmax, &lmin, h, sz);
+				//cout << "finding upper envelope..." << endl;
 				spline(upper, pmax, vmax, lmax, sz);
+				//cout << "finding lower envelope..." << endl;
 				spline(lower, pmin, vmin, lmin, sz);
+				//cout << "finding mean..." << endl;
 				mean(emean, upper, lower, sz);
 				for (i = 0; i < sz; i++) {
 					if (emean[i] > 1000 || emean[i] < -1000)
