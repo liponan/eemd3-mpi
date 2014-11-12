@@ -7,6 +7,7 @@
 //       2014/04/30
 // v3.1: bugs fixed 2014/05/05
 // v3.2: now export to binary file
+// v4.3  read binary file (2014/11/11)
 
 #include <iostream>
 #include <cstdlib>
