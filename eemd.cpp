@@ -65,10 +65,9 @@ void eemd(double *modes,
 			} // end of if 
 		} // end of for-i
 
-		//emd_core(m1, Y1, sz, goal);
+		emd_core(m1, Y1, sz, goal);
 		if (nstd > 0)
-			nstd = nstd + 1;
-			//emd_core(m2, Y2, sz, goal);
+			emd_core(m2, Y2, sz, goal);
 		if (nstd > 0)
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t] + m2[t];
