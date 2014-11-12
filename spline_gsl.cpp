@@ -1,8 +1,7 @@
-// spline.cpp : 定義 DLL 應用程式的匯出函式。
-//
+// requires GNU Scientific Lib
+// v0.3 @ 2014/11/12
 
 #include <gsl/gsl_spline.h>
-
 
 void spline(double *YY, 
 		int *X, double *Y, int m1, int m2) {
