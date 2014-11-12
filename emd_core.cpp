@@ -1,9 +1,4 @@
-// emd_core.cpp : 定義 DLL 應用程式的匯出函式。
-//
-/*
-
-#include <math.h>
-*/
+/* 1-D EMD   coded by Po-Nan Li 2012 */ 
 
 #include <iostream>
 #include <fstream>
@@ -22,10 +17,7 @@ void emd_core(double *modes,
 		double *Y, int sz, int goal) {
 	int m, i, c;
 	int MAX = sz;
-
 	int goal1 = goal + 1;
-
-	//fstream fout("spline_log.txt", ios::out | ios::app);
 
 	/* Core function */
 
@@ -53,29 +45,25 @@ void emd_core(double *modes,
 	// for each mode
 	for (m = 0; m < goal; m++) {
 			// h = r
-			//fout << " @ mode " << m+1 <<"  h = [";
-			for (i = 0; i < sz; i++) {
+			for (i = 0; i < sz; i++) 
 				h[i] = r[i];
-				//fout << h[i] << " ";
-			}
-			//fout << "];" << endl;
+				
 			// solving mode
 			for (c = 0; c < itr; c++) {
-				//fout << "@itr #" << c+1 << endl;
-				//cout << "finding extrema..." << endl;
+				// find extremas
 				find_extrema(pmax, vmax, pmin, vmin, &lmax, &lmin, h, sz);
-				//cout << "finding upper envelope..." << endl;
+				// findupper envelope
 				spline(upper, pmax, vmax, lmax, sz);
-				//cout << "finding lower envelope..." << endl;
+				// find lower envelope
 				spline(lower, pmin, vmin, lmin, sz);
-				//cout << "finding mean..." << endl;
+				// find mean curvs
 				mean(emean, upper, lower, sz);
 				for (i = 0; i < sz; i++) {
 					if (emean[i] > 1000 || emean[i] < -1000)
 						cout<< "Warning! Abnormal EMEAN value " << emean[i] 
 							<< " at position " << i << " after " << c << " iterations..." << endl;
 				}
-				// h = h - meana
+				// h = h - mean
 				for (i = 0; i < sz; i++)
 					h[i] = h[i] - emean[i];
 				for (i = 0; i < sz; i++) {
@@ -101,6 +89,6 @@ void emd_core(double *modes,
 	delete [] upper;
 	delete [] lower;
 	delete [] emean;
-	delete[] h, r;
+	delete [] h, r;
 	}
 	
