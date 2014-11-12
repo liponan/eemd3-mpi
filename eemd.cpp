@@ -1,4 +1,5 @@
-// eemd.cpp 
+// EEMD  coded by Po-Nan Li 2012
+// requires: emd_core.cpp 
 
 #include <cstdlib>
 #include <cmath>
@@ -24,42 +25,26 @@ double Std(double *Y, int sz) {
 		mean = mean + Y[i];
 	mean = mean / sz;
 	double sigma = 0;
-	for (int i = 0; i < sz; i++) {
+	for (int i = 0; i < sz; i++)
 		sigma = sigma + pow( (Y[i] - mean) , 2);
-		// if (sigma < 0) {
-		// 	std::cout << "Warning! sigma = " << sigma << " at position " << i << endl;
-		// 	system("PAUSE");
-		// }
-	}
 	if (sigma > 0)
 		sigma = sqrt( sigma / sz );
 	else {
-		// std::cout << "Error! sigma^2 = " << sigma << " before taking square root!" << endl;
-		// system("PAUSE");
 		sigma = 0;
-	}
-	//std::cout << "sigma = " << sigma << endl; 
 	return sigma;
-}
+} // end of Std()
 
 void eemd(double *modes,
 		double *Y, int sz, int goal, int ens, double nstd) {
 
-	int m, i, c, k, t;
-	
-
-	/* parse input arguments */
-
+	int m, i, c, k, t;	
 	int goal1 = goal + 1;
 	int MAX = sz;
-	int GMX = goal1;
-
-	/* create output arguments */
 
 	/* Core function */
-	double *m1 = new double[GMX*MAX];
-	double *m2 = new double[GMX*MAX];
-	double *tmp = new double[GMX*MAX];
+	double *m1 = new double[goal1*MAX];
+	double *m2 = new double[goal1*MAX];
+	double *tmp = new double[goal1*MAX];
 	double *wn = new double[MAX];
 	double *Y1 = new double[MAX];
 	double *Y2 = new double[MAX];
