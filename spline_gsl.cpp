@@ -47,7 +47,9 @@ void spline(double *YY,
 	} //end of else
 
 	delete[] xd;
+	gsl_interp_accel_free (acc);
+	gsl_interp_type_ftee (t);
 	gsl_spline_free (spline);
-  	gsl_interp_accel_free (acc);
+  	
 
 }
