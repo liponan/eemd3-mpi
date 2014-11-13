@@ -62,7 +62,7 @@ void emd_core(double *modes,
 					if (emean[i] > 1000 || emean[i] < -1000)
 						cout<< "Warning! Abnormal EMEAN value " << emean[i] 
 							<< " at position " << i << " after " << c << " iterations..." << endl;
-				}
+				} // end of for-i
 				// h = h - mean
 				for (i = 0; i < sz; i++)
 					h[i] = h[i] - emean[i];
@@ -70,15 +70,16 @@ void emd_core(double *modes,
 					if (h[i] > 1000 || h[i] < -1000)
 						cout<< "Warning! Abnormal H value " << emean[i] 
 							<< " at position " << i << " after " << c << " iterations..." << endl;
-				}
+				} // end of for-i
 			} // end of for-c
-			// r = r -h
+			// r = r - h
 			for (i = 0; i < sz; i++) {
 				r[i] = r[i] - h[i];
 				modes[i + m*sz] = h[i];
 			} // end of for-i
 
 	} // end of for-m
+
 	for (i = 0; i < sz; i++) // save trend
 		modes[i + goal*sz] = r[i];
     
@@ -90,5 +91,6 @@ void emd_core(double *modes,
 	delete [] lower;
 	delete [] emean;
 	delete [] h, r;
-	}
+	
+	} // end of emd_core
 	

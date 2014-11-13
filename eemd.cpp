@@ -7,22 +7,25 @@
 #include "emd_core.cpp"
 #include <iostream>
 
+double u = 0;
+double v = 0;
+double mean = 0;
+double sigma = 0;
+
 void randn(double *W, int sz) {
-	double u = 0;
-	double v = 0;
 	for (int i = 0; i < sz; i++) {
 		u = (rand() *1.0) / RAND_MAX;
 		v = (rand() *1.0) / RAND_MAX; 
-		W[i] = sqrt( -2 * log(u) ) * cos(2*3.1415926*v);
+		W[i] = sqrt( -2 * log(u) ) * cos( 2 * 3.1415926 * v );
 	} // end of for-i
 }
 
 double Std(double *Y, int sz) {
-	double mean = 0;
+	mean = 0;
 	for (int i = 0; i < sz; i++)
 		mean = mean + Y[i];
 	mean = mean / sz;
-	double sigma = 0;
+	sigma = 0;
 	for (int i = 0; i < sz; i++)
 		sigma = sigma + pow( (Y[i] - mean) , 2);
 	if (sigma > 0)
@@ -65,9 +68,9 @@ void eemd(double *modes,
 			} // end of if 
 		} // end of for-i
 
-		emd_core(m1, Y1, sz, goal);
-		if (nstd > 0)
-			emd_core(m2, Y2, sz, goal);
+		//emd_core(m1, Y1, sz, goal);
+		//if (nstd > 0)
+			//emd_core(m2, Y2, sz, goal);
 		if (nstd > 0)
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t] + m2[t];
