@@ -425,7 +425,7 @@ int main(int argc, char *argv[])
 			} // end of if (world_rank == 0)
 		} // end of for-m1
 	} // end of for-m2
-	
+
 	delete[] modeBuff3in;
 	delete[] myBuff3;
 	delete[] myModes3;
@@ -437,7 +437,9 @@ int main(int argc, char *argv[])
 	delete[] wDisps1;
 
 	if (world_rank == 0) {
-		delete[] modes2, modeBuff3in, modeBuff3out;
+		delete[] modes2;
+		delete[] modeBuff3in;
+		delete[] modeBuff3out;
 		dt = t6 - t4;
 		cout << "EEMD stage 3 done in " << dt << "s" << endl;
 		cout << "==============================================" << endl;
