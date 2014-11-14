@@ -221,7 +221,9 @@ int main(int argc, char *argv[])
 			} // end of for-m1
 		} // end of for-i
 	} // end of for-t
-	delete[] myBuff1, inTmp1, outTmp1;
+	delete[] myBuff1;
+	delete[] inTmp1;
+	delete[] outTmp1;
 
 	// gather and re-sort the data: rootBuff1 => modes1
 	MPI_Gatherv(myModes1, uCnts1[world_rank], MPI_DOUBLE, 
@@ -240,7 +242,10 @@ int main(int argc, char *argv[])
 	delete[] rootBuff1;
 	delete[] img;
 	delete[] myModes1;
-	delete[] uCnts0, uCnts1, uDisps0, uDisps1;
+	delete[] uCnts0;
+	delete[] uCnts1;
+	delete[] uDisps0;
+	delete[] uDisps1;
 
 	t2 = MPI_Wtime();
 	dt = t2 - t1;
@@ -323,12 +328,20 @@ int main(int argc, char *argv[])
 		cout << eta_time << "s to go..." << endl; 
 		} // end of if (world_rank == 0)
 	} // end of for-m1
-	delete[] myBuff2, myModes2, inTmp2, outTmp2;
-	delete[] vCnts0, vCnts1, vDisps0, vDisps1;
 
+	delete[] myBuff2;
+	delete[] myModes2;
+	delete[] inTmp2;
+	delete[] outTmp2;
+	delete[] vCnts0;
+	delete[] vCnts1;
+	delete[] vDisps0;
+	delete[] vDisps1;
 
 	if (world_rank == 0) {
-		delete[] modes1, modeBuff2in, modeBuff2out;
+		delete[] modes1;
+		delete[] modeBuff2in;
+		delete[] modeBuff2out;
 		dt = t4 - t2;
 		cout << "EEMD stage 2 done in " << dt << "s" << endl;
 		cout << "==============================================" << endl;
@@ -412,8 +425,16 @@ int main(int argc, char *argv[])
 			} // end of if (world_rank == 0)
 		} // end of for-m1
 	} // end of for-m2
-	delete[] modeBuff3in, myBuff3, myModes3, inTmp3, outTmp3;
-	delete[] wCnts0, wCnts1, wDisps0, wDisps1;
+	
+	delete[] modeBuff3in;
+	delete[] myBuff3;
+	delete[] myModes3;
+	delete[] inTmp3;
+	delete[] outTmp3;
+	delete[] wCnts0;
+	delete[] wCnts1;
+	delete[] wDisps0;
+	delete[] wDisps1;
 
 	if (world_rank == 0) {
 		delete[] modes2, modeBuff3in, modeBuff3out;
