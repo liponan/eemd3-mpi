@@ -90,7 +90,8 @@ void emd_core(double *modes,
 	delete [] upper;
 	delete [] lower;
 	delete [] emean;
-	delete [] h, r;
+	delete [] h;
+	delete [] r;
 	
 	} // end of emd_core
 	
