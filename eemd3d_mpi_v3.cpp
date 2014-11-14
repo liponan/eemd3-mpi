@@ -485,9 +485,9 @@ int main(int argc, char *argv[])
 		//sprintf(timecode_str, "%d", timecode);
 		string filenameStr(argv[1]);
 		string filename_export // v
-		 = string(filenameStr,0,filenameStr.length()-0)+"_modes" + timecode_str + ".bin";
+		 = string(filenameStr,0,filenameStr.length()-0)+"_modes" + timecode_str + ".modes";
 		string filename_log    // v
-		 = string(filenameStr,0,filenameStr.length()-0)+"_log" + timecode_str + ".txt";
+		 = string(filenameStr,0,filenameStr.length()-0)+"_" + timecode_str + ".log";
 
 		// write output file
 		writeBinary(filename_export, dim2, lg2, modes);
