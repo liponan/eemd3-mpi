@@ -9,8 +9,6 @@
 
 double u = 0;
 double v = 0;
-double mean = 0;
-double sigma = 0;
 
 void randn(double *W, int sz) {
 	for (int i = 0; i < sz; i++) {
@@ -21,11 +19,11 @@ void randn(double *W, int sz) {
 }
 
 double Std(double *Y, int sz) {
-	mean = 0;
+	double mean = 0;
 	for (int i = 0; i < sz; i++)
 		mean = mean + Y[i];
 	mean = mean / sz;
-	sigma = 0;
+	double sigma = 0;
 	for (int i = 0; i < sz; i++)
 		sigma = sigma + pow( (Y[i] - mean) , 2);
 	if (sigma > 0)
@@ -68,9 +66,9 @@ void eemd(double *modes,
 			} // end of if 
 		} // end of for-i
 
-		//emd_core(m1, Y1, sz, goal);
-		//if (nstd > 0)
-			//emd_core(m2, Y2, sz, goal);
+		emd_core(m1, Y1, sz, goal);
+		if (nstd > 0)
+			emd_core(m2, Y2, sz, goal);
 		if (nstd > 0)
 			for (t = 0; t < sz*goal1; t++)
 				tmp[t] = tmp[t] + m1[t] + m2[t];
@@ -82,10 +80,17 @@ void eemd(double *modes,
 	if (nstd > 0)
 		for (t = 0; t < sz*goal1; t++)
 			modes[t] = tmp[t]*sigma / (ens * 2);
-	else
+	else 
 		for (t = 0; t < sz*goal1; t++)
 			modes[t] = tmp[t]*sigma / ens;
-	delete[] m1, m2, tmp, wn, Y1, Y2;
+
+	// free dynamic arrays	
+	delete[] m1;
+	delete[] m2;
+	delete[] tmp;
+	delete[] wn;
+	delete[] Y1;
+	delete[] Y2;
 
 } // end of eemd
 	
