@@ -93,7 +93,6 @@ int main(int argc, char *argv[])
 
 	// Now we know the exact data size, so let's declare the memory block for the data
 	double *img = NULL;
-	double tmpNum;
 
 	// load the image into memory
 	if (world_rank == 0) {
