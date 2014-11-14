@@ -132,11 +132,11 @@ int main(int argc, char *argv[])
 	double *modes1; 
 	double *rootBuff1;
 	if (world_rank == 0) {
+		modes1 = new double[SZ*goalt]; 
+		rootBuff1 = new double[SZ*goalt];
 		cout << "num of modes: " << goal << endl;
 		cout << "num of ensembles: " << ens << endl;
 		cout << "amp of white noise: " << nstd << endl;
-		modes1 = new double[SZ*goalt]; 
-		rootBuff1 = new double[SZ*goalt];
 		cout << "EEMD3D starts!" << endl;
 		cout << "=============================================" << endl;
 	}
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
 	if (world_rank == 0) {
 		cout << "EEMD stage 1 done in " << dt << "s" << endl;
 		cout << "==============================================" << endl;
-	}
+	} // end of if
 	
 	
 
@@ -363,7 +363,6 @@ int main(int argc, char *argv[])
 	// parallel in each m1 mode in each m2 mode
 	for (m2 = 0; m2 < goalt; m2++) {
 		for (m1 = 0; m1 < goalt; m1++) {
-			
 			t5 = MPI_Wtime();
 			if (world_rank == 0) {
 				for (i = 0; i < U; i++)
@@ -387,7 +386,7 @@ int main(int argc, char *argv[])
 						 = outTmp3[k + m3*W];
 					} // end of for-m3
 				} // end of for-k
-			} // end of for-j
+			} // end of for-t
 
 			// gather and re-sort
 			MPI_Gatherv(myModes3, wCnts1[world_rank], MPI_DOUBLE, 
@@ -436,7 +435,7 @@ int main(int argc, char *argv[])
 	double *modes = NULL;
 	if (world_rank == 0) {
 		modes = new double[SZ * goalt];
-		for (int t = 0; t < SZ*goalt; t++)
+		for (t = 0; t < SZ*goalt; t++)
 			modes[t] = 0;
 		for (r = goal; r >= 0; r--) {
 			for (k = 0; k < W; k++) {
