@@ -485,7 +485,7 @@ int main(int argc, char *argv[])
 		//sprintf(timecode_str, "%d", timecode);
 		string filenameStr(argv[1]);
 		string filename_export // v
-		 = string(filenameStr,0,filenameStr.length()-0)+"_modes" + timecode_str + ".modes";
+		 = string(filenameStr,0,filenameStr.length()-0)+"_" + timecode_str + ".modes";
 		string filename_log    // v
 		 = string(filenameStr,0,filenameStr.length()-0)+"_" + timecode_str + ".log";
 
