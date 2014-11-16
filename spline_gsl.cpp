@@ -13,12 +13,9 @@ void spline(double *YY,
 	if (m1 < 3)
 		m3 = m2;
 
-
 	gsl_interp_accel *acc = gsl_interp_accel_alloc ();
   	//const gsl_interp_type *t = gsl_interp_cspline; 
   	gsl_spline *spline = gsl_spline_alloc (gsl_interp_cspline, m3);
-  	gsl_spline *poly   = gsl_spline_alloc (gsl_interp_polynomial, m3);
-  	
 
 	/* Core function */
   	double *xd = new double[m1];
@@ -26,7 +23,7 @@ void spline(double *YY,
   		xd[j] = (int)X[j];
 
 
-	double m;
+	double m; // slope for linear interpolation
 	
 	if (m1 > 3 ) { // use spline
 		gsl_spline_init (spline, xd, Y, m1);
@@ -36,22 +33,13 @@ void spline(double *YY,
 	} // end of if
 
 	else {
-		if (m1 > 2) { // use polynomial
-			gsl_spline_init (poly, xd, Y, m1);
-			for (int j = 0; j < m2; j++) {
-				YY[j] = gsl_spline_eval (poly, j, acc);
-			} // end of for-j
-		} // end of if
-		else {
-			m = (Y[1] - Y[0]) / (m2 - 1);
-			for (int j = 0; j < m2; j++) {
-				YY[j] = Y[0] + m * j;
-			} // end of for-j		
-		} // end of else	
+		m = (Y[1] - Y[0]) / (m2 - 1);
+		for (int j = 0; j < m2; j++) {
+			YY[j] = Y[0] + m * j;
+		} // end of for-j		
 	} //end of else
 
 	delete[] xd;
 	gsl_interp_accel_free (acc);
-	gsl_spline_free (spline);	
-	gsl_spline_free (poly);	
+	gsl_spline_free (spline);
 }
