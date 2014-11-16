@@ -23,7 +23,7 @@ void spline(double *YY,
 
 	double m;
 	
-	if (m1 > 2 ) {
+	if (m1 > 3 ) {
 		for (int j = 0; j < m2; j++) {
 			YY[j] = gsl_spline_eval (spline, j, acc);
 		} // end of for-j
