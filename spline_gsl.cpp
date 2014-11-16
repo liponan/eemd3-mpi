@@ -8,12 +8,16 @@ void spline(double *YY,
 
 	// m1: length of discrete extremas
 	// m2: length of original data points
+	// m3: used to cheat gsl_spline_alloc
+	int m3 = m1;
+	if (m1 < 3)
+		m3 = m2;
 
 
 	gsl_interp_accel *acc = gsl_interp_accel_alloc ();
   	//const gsl_interp_type *t = gsl_interp_cspline; 
-  	gsl_spline *spline = gsl_spline_alloc (gsl_interp_cspline, m1);
-  	gsl_spline *poly   = gsl_spline_alloc (gsl_interp_polynomial, m1);
+  	gsl_spline *spline = gsl_spline_alloc (gsl_interp_cspline, m3);
+  	gsl_spline *poly   = gsl_spline_alloc (gsl_interp_polynomial, m3);
   	
 
 	/* Core function */
