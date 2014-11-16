@@ -35,7 +35,7 @@ void spline(double *YY,
 		if (m1 > 2) { // use polynomial
 			gsl_spline_init (poly, xd, Y, m1);
 			for (int j = 0; j < m2; j++) {
-				YY[j] = gsl_spline_eval (spline, j, acc);
+				YY[j] = gsl_spline_eval (poly, j, acc);
 			} // end of for-j
 		} // end of if
 		else {
