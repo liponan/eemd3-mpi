@@ -417,7 +417,7 @@ int main(int argc, char *argv[])
 			dt = t6 - t5;
 			eta_time
 			 = (t6 - t4) * ( (goalt-m1-1) + (goalt-m2-1)*goalt )
-			  / ((m1+1) + (m2+1)*goalt);
+			  / ((m1+1) + m2+*goalt);
 			cout << "Mode " << m1+1 << "/" << goalt
 				 << " in mode " << m2+1 << "/" << goalt
 				 << " solved in " << dt << "s.  ";
