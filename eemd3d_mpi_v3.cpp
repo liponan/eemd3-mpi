@@ -416,8 +416,8 @@ int main(int argc, char *argv[])
 			t6 = MPI_Wtime();
 			dt = t6 - t5;
 			eta_time
-			 = (t6 - t4) * ( (goalt-m1-1) + (goalt-m2)*goalt )
-			  / ((m1+1) + m2*goalt);
+			 = (t6 - t4) * ( (goalt-m1-1) + (goalt-m2-1)*goalt )
+			  / ((m1+1) + (m2+1)*goalt);
 			cout << "Mode " << m1+1 << "/" << goalt
 				 << " in mode " << m2+1 << "/" << goalt
 				 << " solved in " << dt << "s.  ";
