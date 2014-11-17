@@ -425,8 +425,6 @@ int main(int argc, char *argv[])
 			} // end of if (world_rank == 0)
 		} // end of for-m1
 	} // end of for-m2
-
-	delete[] modeBuff3in;
 	delete[] myBuff3;
 	delete[] myModes3;
 	delete[] inTmp3;
@@ -435,7 +433,6 @@ int main(int argc, char *argv[])
 	delete[] wCnts1;
 	delete[] wDisps0;
 	delete[] wDisps1;
-
 	if (world_rank == 0) {
 		delete[] modes2;
 		delete[] modeBuff3in;
