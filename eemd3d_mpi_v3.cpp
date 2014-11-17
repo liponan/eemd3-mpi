@@ -132,8 +132,6 @@ int main(int argc, char *argv[])
 	double *modes1; 
 	double *rootBuff1;
 	if (world_rank == 0) {
-		modes1 = new double[SZ*goalt]; 
-		rootBuff1 = new double[SZ*goalt];
 		cout << "num of modes: " << goal << endl;
 		cout << "num of ensembles: " << ens << endl;
 		cout << "amp of white noise: " << nstd << endl;
@@ -207,6 +205,12 @@ int main(int argc, char *argv[])
 	double *myModes1 = new double[uCnts0[world_rank]*goalt];
 	double *inTmp1 = new double[U];
 	double *outTmp1 = new double[U * goalt];
+
+	if (world_rank == 0) {
+		modes1 = new double[SZ*goalt]; 
+		rootBuff1 = new double[SZ*goalt];
+	} // end of if
+
 	MPI_Scatterv(img, uCnts0, uDisps0, MPI_DOUBLE, 
 		myBuff1, uCnts0[world_rank], MPI_DOUBLE,
 		0, MPI_COMM_WORLD);
@@ -239,7 +243,8 @@ int main(int argc, char *argv[])
 						 = rootBuff1[i + m1*U + j*U*goalt + k*U*goalt*V];				 
 	} // end of if
 	
-	delete[] rootBuff1;
+	if (world_rank == 0)
+		delete[] rootBuff1;
 	delete[] img;
 	delete[] myModes1;
 	delete[] uCnts0;
