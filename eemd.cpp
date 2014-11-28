@@ -54,12 +54,12 @@ void eemd(double *modes,
 	for (k = 0; k < ens; k++) {
 		randn(wn, sz);
 		for (i = 0; i < sz; i++) {
-			if (sigma > 0)
+			if (sigma > 0.000001)
 				Y1[i] = Y[i]/sigma + wn[i]*nstd;
 			else
 				Y1[i] = 0 + wn[i]*nstd;
 			if (nstd > 0) {
-				if (sigma > 0)
+				if (sigma > 0.000001)
 					Y2[i] = Y[i]/sigma - wn[i]*nstd;
 				else
 					Y2[i] = 0 - wn[i]*nstd;
