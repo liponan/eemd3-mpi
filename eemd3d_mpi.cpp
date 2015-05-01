@@ -535,7 +535,7 @@ int main(int argc, char *argv[])
 
 /* toDo: calculate the partition size for parallel work */
 int toDo(long long int N, long long int myrank, int world_size) {
-	long long int num = floor((N*1.0)/world_size);
+	int num = floor((N*1.0)/world_size);
 	long long int remaining = N - num * world_size;
 	if (myrank >= world_size - remaining)
 		num++;
