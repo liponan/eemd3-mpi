@@ -147,9 +147,9 @@ int main(int argc, char *argv[])
 	int *uCnts0  = new int[world_size];
 	int *vCnts0  = new int[world_size];
 	int *wCnts0  = new int[world_size];
-	int *uDisps0 = new int[world_size];
-	int *vDisps0 = new int[world_size];
-	int *wDisps0 = new int[world_size];
+	long long int *uDisps0 = new long long int[world_size];
+	long long int *vDisps0 = new long long int[world_size];
+	long long int *wDisps0 = new long long int[world_size];
 	uCnts0[0] = toDo(V*W, 0, world_size) * U;
 	vCnts0[0] = toDo(U*W, 0, world_size) * V;
 	wCnts0[0] = toDo(U*V, 0, world_size) * W;
@@ -168,9 +168,9 @@ int main(int argc, char *argv[])
 	int *uCnts1  = new int[world_size];
 	int *vCnts1  = new int[world_size];
 	int *wCnts1  = new int[world_size];
-	int *uDisps1 = new int[world_size];
-	int *vDisps1 = new int[world_size];
-	int *wDisps1 = new int[world_size];
+	long long int *uDisps1 = new long long int[world_size];
+	long long int *vDisps1 = new long long int[world_size];
+	long long int *wDisps1 = new long long int[world_size];
 	uCnts1[0] = toDo(V*W, 0, world_size) * U*goalt;
 	vCnts1[0] = toDo(U*W, 0, world_size) * V*goalt;
 	wCnts1[0] = toDo(U*V, 0, world_size) * W*goalt;
