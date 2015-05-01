@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
 	int d = 0;
 	int lg[4] = {0};
 	bool flag = true;
-	int U = 1, V = 1, W = 1, SZ = 1;
-	int i = 0, j = 0, k =0;
-	int t = 0, m1 = 0, m2 = 0, m3 = 0, r = 0;
+	long long int U = 1, V = 1, W = 1, SZ = 1;
+	long long int i = 0, j = 0, k =0;
+	long long int t = 0, m1 = 0, m2 = 0, m3 = 0, r = 0;
 
 
 	int bin_flag1 = 1;
@@ -75,11 +75,11 @@ int main(int argc, char *argv[])
 		SZ = U * V * W;
 	} // end of if (world_rank == 0)
 
-	MPI_Bcast(&SZ,  1, MPI_INT, 0, MPI_COMM_WORLD); // broadcast the data length SZ
-	MPI_Bcast(&dim, 1, MPI_INT, 0, MPI_COMM_WORLD); // broadcast the dimension dim
-	MPI_Bcast(&U,   1, MPI_INT, 0, MPI_COMM_WORLD); // broadcast the height U
-	MPI_Bcast(&V,   1, MPI_INT, 0, MPI_COMM_WORLD); // broadcast the width V
-	MPI_Bcast(&W,   1, MPI_INT, 0, MPI_COMM_WORLD); // broadcast the depth W
+	MPI_Bcast(&SZ,  1, MPI_LONG_LONG_INT, 0, MPI_COMM_WORLD); // broadcast the data length SZ
+	MPI_Bcast(&dim, 1, MPI_INT, 		  0, MPI_COMM_WORLD); // broadcast the dimension dim
+	MPI_Bcast(&U,   1, MPI_LONG_LONG_INT, 0, MPI_COMM_WORLD); // broadcast the height U
+	MPI_Bcast(&V,   1, MPI_LONG_LONG_INT, 0, MPI_COMM_WORLD); // broadcast the width V
+	MPI_Bcast(&W,   1, MPI_LONG_LONG_INT, 0, MPI_COMM_WORLD); // broadcast the depth W
 
 
 	/* print the dimensions */
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 		default:
 			break;
 	}
-	unsigned long int goalt = goal + 1;
+	long long int goalt = goal + 1;
 
 	char timecode_str[5];
 	sprintf(timecode_str, "%d", timecode);
@@ -144,12 +144,12 @@ int main(int argc, char *argv[])
 	/* now establish the plan for parallel programing */
 
 	// new plan for storing image data
-	int *uCnts0 = new int[world_size];
-	int *vCnts0 = new int[world_size];
-	int *wCnts0 = new int[world_size];
-	int *uDisps0 = new int[world_size];
-	int *vDisps0 = new int[world_size];
-	int *wDisps0 = new int[world_size];
+	long long int *uCnts0 = new long long int[world_size];
+	long long int *vCnts0 = new long long int[world_size];
+	long long int *wCnts0 = new long long int[world_size];
+	long long int *uDisps0 = new long long int[world_size];
+	long long int *vDisps0 = new long long int[world_size];
+	long long int *wDisps0 = new long long int[world_size];
 	uCnts0[0] = toDo(V*W, 0, world_size) * U;
 	vCnts0[0] = toDo(U*W, 0, world_size) * V;
 	wCnts0[0] = toDo(U*V, 0, world_size) * W;
@@ -165,12 +165,12 @@ int main(int argc, char *argv[])
 		wDisps0[t] = wDisps0[t-1] + wCnts0[t-1];
 	} // end of for-t
 	// new plan for gathering post-EEMD data
-	int *uCnts1 = new int[world_size];
-	int *vCnts1 = new int[world_size];
-	int *wCnts1 = new int[world_size];
-	int *uDisps1 = new int[world_size];
-	int *vDisps1 = new int[world_size];
-	int *wDisps1 = new int[world_size];
+	long long int *uCnts1  = new long long int[world_size];
+	long long int *vCnts1  = new long long int[world_size];
+	long long int *wCnts1  = new long long int[world_size];
+	long long int *uDisps1 = new long long int[world_size];
+	long long int *vDisps1 = new long long int[world_size];
+	long long int *wDisps1 = new long long int[world_size];
 	uCnts1[0] = toDo(V*W, 0, world_size) * U*goalt;
 	vCnts1[0] = toDo(U*W, 0, world_size) * V*goalt;
 	wCnts1[0] = toDo(U*V, 0, world_size) * W*goalt;
@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
 	/* for 1st dimension: solve for each COL */
 	/*****************************************/
 
-	int myTodo = toDo(V*W, world_rank, world_size);
+	long long int myTodo = toDo(V*W, world_rank, world_size);
 	double *myBuff1 = new double[uCnts0[world_rank]];
 	double *myModes1 = new double[uCnts0[world_rank]*goalt];
 	double *inTmp1 = new double[U];
@@ -534,9 +534,9 @@ int main(int argc, char *argv[])
 } // end of main()
 
 /* toDo: calculate the partition size for parallel work */
-int toDo(int N, int myrank, int world_size) {
-	int num = floor((N*1.0)/world_size);
-	int remaining = N - num * world_size;
+long long int toDo(long long int N, long long int myrank, int world_size) {
+	long long int num = floor((N*1.0)/world_size);
+	long long int remaining = N - num * world_size;
 	if (myrank >= world_size - remaining)
 		num++;
 	return num;
