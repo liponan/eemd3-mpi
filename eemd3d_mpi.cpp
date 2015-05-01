@@ -24,7 +24,7 @@
 
 	using namespace std;
 
-	int toDo(int, int, int);
+	int toDo(long long int, long long int, int);
 
 int main(int argc, char *argv[])
 {
