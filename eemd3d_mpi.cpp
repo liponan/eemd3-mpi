@@ -144,12 +144,12 @@ int main(int argc, char *argv[])
 	/* now establish the plan for parallel programing */
 
 	// new plan for storing image data
-	long long int *uCnts0 = new long long int[world_size];
-	long long int *vCnts0 = new long long int[world_size];
-	long long int *wCnts0 = new long long int[world_size];
-	long long int *uDisps0 = new long long int[world_size];
-	long long int *vDisps0 = new long long int[world_size];
-	long long int *wDisps0 = new long long int[world_size];
+	int *uCnts0  = new int[world_size];
+	int *vCnts0  = new int[world_size];
+	int *wCnts0  = new int[world_size];
+	int *uDisps0 = new int[world_size];
+	int *vDisps0 = new int[world_size];
+	int *wDisps0 = new int[world_size];
 	uCnts0[0] = toDo(V*W, 0, world_size) * U;
 	vCnts0[0] = toDo(U*W, 0, world_size) * V;
 	wCnts0[0] = toDo(U*V, 0, world_size) * W;
@@ -165,12 +165,12 @@ int main(int argc, char *argv[])
 		wDisps0[t] = wDisps0[t-1] + wCnts0[t-1];
 	} // end of for-t
 	// new plan for gathering post-EEMD data
-	long long int *uCnts1  = new long long int[world_size];
-	long long int *vCnts1  = new long long int[world_size];
-	long long int *wCnts1  = new long long int[world_size];
-	long long int *uDisps1 = new long long int[world_size];
-	long long int *vDisps1 = new long long int[world_size];
-	long long int *wDisps1 = new long long int[world_size];
+	int *uCnts1  = new int[world_size];
+	int *vCnts1  = new int[world_size];
+	int *wCnts1  = new int[world_size];
+	int *uDisps1 = new int[world_size];
+	int *vDisps1 = new int[world_size];
+	int *wDisps1 = new int[world_size];
 	uCnts1[0] = toDo(V*W, 0, world_size) * U*goalt;
 	vCnts1[0] = toDo(U*W, 0, world_size) * V*goalt;
 	wCnts1[0] = toDo(U*V, 0, world_size) * W*goalt;
@@ -534,7 +534,7 @@ int main(int argc, char *argv[])
 } // end of main()
 
 /* toDo: calculate the partition size for parallel work */
-long long int toDo(long long int N, long long int myrank, int world_size) {
+int toDo(long long int N, long long int myrank, int world_size) {
 	long long int num = floor((N*1.0)/world_size);
 	long long int remaining = N - num * world_size;
 	if (myrank >= world_size - remaining)
