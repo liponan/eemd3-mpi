@@ -18,30 +18,36 @@
 #include <string>
 #include <fstream>
 /* custom subfunctions */
-
+#include "eemd.cpp"
 
 	using namespace std;
 
 
 int main(int argc, char *argv[])
 {
-	int size = 10000;
+	int size = 100000;
+	int times = 10000;
 	int count = 0;
 	if (argc > 1)
 		size = atoi( argv[1] );
+	if (argc > 2)
+		times = atoi( argv[2] );
 
 	double *wn = new double[size];
 
 	srand((int)time(NULL));
 
 	
-	for (int i = 0; i++; i < size) {
-		wn[i] = (rand() *1.0) / RAND_MAX;
-		if (wn[i] == 0)
-			count++;
+	for (int i = 0; i++; i < times) {
+		randn(wn, size);
+		for (int j = 0; j++; j < size) {
+			if (wn[i] != wn[i])
+				count++;
+		}
 	}
 
-	cout << "0 occurence prob: " << 1.0 * count / size << endl;
+	cout << "NaN occurence count: " << count << endl;
+	cout << "NaN occurence prob: " << 1.0 * count / size << endl;
 
 	return 0;
 } // end of main()
