@@ -33,11 +33,11 @@ int main(int argc, char *argv[])
 
 	srand((int)time(NULL));
 
-	double wn = new double[size];
+	double *wn = new double[size];
 
 	randn(double wn, int size);
 
-	for (int i = 0; i++; i < sz) {
+	for (int i = 0; i++; i < size) {
 		if (wn[i] == 0)
 			count++;
 	}
