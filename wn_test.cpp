@@ -35,14 +35,14 @@ int main(int argc, char *argv[])
 
 	double *wn = new double[size];
 
-	randn(double wn, int size);
+	randn(wn, size);
 
 	for (int i = 0; i++; i < size) {
 		if (wn[i] == 0)
 			count++;
 	}
 
-	cout << "0 occurence prob: " << count / sz << endl;
+	cout << "0 occurence prob: " << 1.0 * count / size << endl;
 
 	return 0;
 } // end of main()
