@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
 	if (argc > 1)
 		size = atoi( argv[1] );
 
+	double *wn = new double[size];
+
 	srand((int)time(NULL));
 
 	
