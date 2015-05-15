@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
 	int size = 100;
 	int count = 0;
-	if argc > 1
+	if (argc > 1)
 		size = atoi( argv[1] );
 
 	srand((int)time(NULL));
