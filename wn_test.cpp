@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
 	srand((int)time(NULL));
 
 	
-	for (int i = 0; i++; i < times) {
+	for (int i = 0; i < times; i++) {
 		randn(wn, size);
-		for (int j = 0; j++; j < size) {
-			cout << fixed  <<  setprecision(2) << wn[i] << "";
-			if (wn[i] != wn[i])
+		for (int j = 0; j < size; j++) {
+			cout << fixed  <<  setprecision(2) << wn[j] << "";
+			if (wn[j] != wn[j])
 				count++;
 		}
 	}
