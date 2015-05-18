@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 	
 	for (int i = 0; i < times; i++) {
 		randn(wn, size);
-		eemd(modes, wn, size, goal, 1000, 1)
+		eemd(modes, wn, size, goal, 1000, 1);
 		for (int j = 0; j < size*(goal+1); j++) {
 			// cout << fixed  <<  setprecision(2) << wn[j] << "";
 			if (modes[j] != modes[j])
