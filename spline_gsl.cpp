@@ -39,7 +39,7 @@ void spline(double *YY,
 		if (YY[j] != YY[j]) {
 			cout << "NaN caugh!" << endl;
 			for (int i = 0; i < m2; i++)
-				cout << "(" << j << ", " << YY[j] << "), ";
+				cout << "(" << i << ", " << YY[i] << "), ";
 		}
 	}
 
