@@ -41,13 +41,14 @@ int main(int argc, char *argv[])
 	for (int i = 0; i++; i < times) {
 		randn(wn, size);
 		for (int j = 0; j++; j < size) {
+			cout << fixed  <<  setprecision(2) << wn[i] << "";
 			if (wn[i] != wn[i])
 				count++;
 		}
 	}
 
 	cout << "NaN occurence count: " << count << endl;
-	cout << "NaN occurence prob: " << 1.0 * count / size << endl;
+	cout << "NaN occurence prob: " << 1.0 * count / size / times << endl;
 
 	return 0;
 } // end of main()
