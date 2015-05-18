@@ -35,6 +35,14 @@ void spline(double *YY,
 		} // end of for-j		
 	} //end of else
 
+	for (int j = 0; j < m2; j++) {
+		if (YY[j] != YY[j]) {
+			cout << "NaN caugh!" << endl;
+			for (int i = 0; i < m2; i++)
+				cout << "(" << j << ", " << YY[j] << "), ";
+		}
+	}
+
 	delete[] xd;
 	gsl_spline_free (spline);
 	gsl_interp_accel_free (acc);
