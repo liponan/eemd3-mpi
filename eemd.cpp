@@ -54,15 +54,15 @@ void eemd(double *modes,
 	for (k = 0; k < ens; k++) {
 		randn(wn, sz);
 		for (i = 0; i < sz; i++) {
-			if (sigma > 0.000001)
-				Y1[i] = Y[i]/sigma + wn[i]*nstd;
+			if (sigma > 0.000000001)
+				Y1[i] = Y[i]+ sigma * wn[i] * nstd;
 			else
-				Y1[i] = 0 + wn[i]*nstd;
+				Y1[i] = Y[i] + 0.000000001 * wn[i] * nstd;
 			if (nstd > 0) {
-				if (sigma > 0.000001)
-					Y2[i] = Y[i]/sigma - wn[i]*nstd;
+				if (sigma > 0.000000001)
+					Y2[i] = Y[i] - sigma * wn[i] * nstd;
 				else
-					Y2[i] = 0 - wn[i]*nstd;
+					Y2[i] = Y[i] - 0.000000001 * wn[i] * nstd;
 			} // end of if 
 		} // end of for-i
 
@@ -79,10 +79,10 @@ void eemd(double *modes,
 
 	if (nstd > 0)
 		for (t = 0; t < sz*goal1; t++)
-			modes[t] = tmp[t]*sigma / (ens * 2);
+			modes[t] = tmp[t] / (ens * 2);
 	else 
 		for (t = 0; t < sz*goal1; t++)
-			modes[t] = tmp[t]*sigma / ens;
+			modes[t] = tmp[t] / ens;
 
 	// free dynamic arrays	
 	delete[] m1;
