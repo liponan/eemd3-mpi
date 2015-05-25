@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
 	/* print the dimensions */
 	if (world_rank == 0) {
-		cout << "# of dimensions: " << dim << endl;
+		cout << "num of dimensions: " << dim << endl;
 		cout << "Size: [ ";
 		for (d = 0; d < dim; d++)
 			cout << lg[d] << " ";
