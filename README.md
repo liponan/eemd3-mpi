@@ -6,14 +6,17 @@ Require GSL (GNU Scientific Library) and MPI
 Intel compiler:
 
 ```
-mpicxx eemd3d_mpi_v3.cpp -lgsl -lgslcblas -lm -O3 -o mpi-eemd3
+mpicxx eemd3d_mpi.cpp -lgsl -lgslcblas -lm -O3 -o mpi-eemd3
 ```
 
 # Running command example
 
 ```
-mpirun -np 50 ./mpi-eemd3 R50.txt 3 100 1
+mpirun -np 50 ./mpi-eemd3 INPUT.img 3 100 1
 ```
+
+We will provide the data for test in the repo in the furture! 
+
 ## Arguments
 - First argument: input file in CSV style with first number indicating the number of dimension (i.e. 3), followed by three integers indicating the size in three dimensions. Remaining values are the elements of the input data in 1-D array style.
 - Second argument: numbers of modes to decompose. (Default: 3)
