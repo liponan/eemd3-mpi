@@ -69,8 +69,8 @@ int main(int argc, char *argv[])
 		}
 			
 		// read the header
-		U = lg[1];
-		V = lg[0];
+		U = lg[0];
+		V = lg[1];
 		W = lg[2];
 		SZ = U * V * W;
 	} // end of if (world_rank == 0)
