@@ -36,16 +36,16 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
 	// some variables
-	int t1 = MPI_Wtime();
-	int t2, t3, t4, t5, t6, t7;
-	int dt, eta_time;
-	int dim = 0;
-	int d = 0;
-	int lg[4] = {0};
+	unsigned int t1 = MPI_Wtime();
+	unsigned int t2, t3, t4, t5, t6, t7;
+	unsigned int dt, eta_time;
+	unsigned int dim = 0;
+	unsigned int d = 0;
+	unsigned int lg[4] = {0};
 	bool flag = true;
-	int U = 1, V = 1, W = 1, SZ = 1;
-	int i = 0, j = 0, k =0;
-	int t = 0, m1 = 0, m2 = 0, m3 = 0, r = 0;
+	unsigned long int U = 1, V = 1, W = 1, SZ = 1;
+	unsigned int i = 0, j = 0, k =0;
+	unsigned int t = 0, m1 = 0, m2 = 0, m3 = 0, r = 0;
 
 
 	int bin_flag1 = 1;
